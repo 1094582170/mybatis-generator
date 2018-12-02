@@ -24,7 +24,7 @@ public interface MyMapper<T> {
     T selectOneById(@Param("clazz") Class<T> clazz, @Param("id") int id);
 
     /**
-     * 根据实体中的属性进行查询，只能有一个返回值，有多个结果是抛出异常，查询条件使用等号
+     * 根据实体中的属性进行查询 and 连接
      *
      * @param t
      * @return

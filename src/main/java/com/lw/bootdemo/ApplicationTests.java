@@ -97,11 +97,19 @@ public class ApplicationTests {
 
 	@Test
 	public void my() {
-		log.info("t1:{}", myT1Dao.selectOneById(T1.class, 1));
-
-		T2 t2 = new T2();
-		t2.setUserName("lw");
-		t2.setId(4);
-		log.info("t2:{}", myT2Dao.select2(t2));
+		log.info("t1 selectOneById:{}", myT1Dao.selectOneById(T1.class, 1));
+		T1 t1 = new T1();
+		t1.setUserName("lw");
+		t1.setId(1);
+		log.info("t1 select:{}", myT1Dao.select(t1));
 	}
+
+	@Test
+	public void myTk() {
+		T2 t2 = new T2();
+		t2.setId(1);
+		t2.setUserName("lw");
+		log.info("t2 selectOr:{}", myT2Dao.selectOr(t2));
+	}
+
 }

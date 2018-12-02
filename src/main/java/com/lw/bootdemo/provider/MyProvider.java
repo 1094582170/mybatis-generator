@@ -3,6 +3,7 @@ package com.lw.bootdemo.provider;
 import javax.persistence.Column;
 import javax.persistence.Table;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.Map;
 
 /**
@@ -41,7 +42,7 @@ public class MyProvider {
         StringBuilder sb = new StringBuilder();
         StringBuilder whereSb = new StringBuilder();
         sb.append("select ");
-        whereSb.append(" <where>");
+        whereSb.append(" where 1=1");
         // 利用反射获取表名和字段名
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
@@ -50,8 +51,17 @@ public class MyProvider {
                 String column = declaredAnnotation.name();
                 String fieldName = field.getName();
                 sb.append(column + " as " + fieldName + ",");
+                String methodName = "get" + captureName(fieldName);
+                try {
+                    Method method = clazz.getDeclaredMethod(methodName, null);
+                    Object value = method.invoke(obj);
+                    if (value != null) {
+                        whereSb.append(" AND " + column + " = #{t." + fieldName + "}");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
-                whereSb.append("<if test=\"t." + fieldName + " != null\"> AND " + column + " = #{t." + fieldName + "}</if>");
             }
         }
         if (sb.toString().endsWith(",")) {
@@ -60,9 +70,16 @@ public class MyProvider {
         Table annotation = clazz.getAnnotation(Table.class);
         String tableName = annotation.name();
         sb.append(" from " + tableName);
-        whereSb.append(" </where>");
         sb.append(whereSb);
         return sb.toString();
+
+    }
+
+    public static String captureName(String name) {
+        char[] cs = name.toCharArray();
+        cs[0] -= 32;
+        return String.valueOf(cs);
+
     }
 
 }
