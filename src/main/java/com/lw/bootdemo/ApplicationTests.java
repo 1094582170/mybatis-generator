@@ -1,6 +1,8 @@
 package com.lw.bootdemo;
 
 import com.github.pagehelper.PageHelper;
+import com.lw.bootdemo.mapper.read.MyT1Dao;
+import com.lw.bootdemo.mapper.read.MyT2Dao;
 import com.lw.bootdemo.mapper.read.T1ReadDao;
 import com.lw.bootdemo.mapper.read.T2ReadDao;
 import com.lw.bootdemo.mapper.write.T2WriteDao;
@@ -10,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import tk.mybatis.mapper.entity.Example;
@@ -31,6 +32,12 @@ public class ApplicationTests {
 
     @Autowired
 	private T1ReadDao t1ReadDao;
+
+	@Autowired
+	private MyT1Dao myT1Dao;
+
+	@Autowired
+	private MyT2Dao myT2Dao;
 	@Test
 	public void contextLoads() {
 
@@ -88,4 +95,13 @@ public class ApplicationTests {
 		log.info("insert:{}",t2);
 	}
 
+	@Test
+	public void my() {
+		log.info("t1:{}", myT1Dao.selectOneById(T1.class, 1));
+
+		T2 t2 = new T2();
+		t2.setUserName("lw");
+		t2.setId(4);
+		log.info("t2:{}", myT2Dao.select2(t2));
+	}
 }
