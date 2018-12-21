@@ -10,10 +10,11 @@
 		<!-- 通用Mapper的插件https://github.com/abel533/Mapper/wiki，该插件有一个必选的<property>属性mappers，这里的mappers和通用Mapper中的mappers配置含义一样，就是我们使用的通用Mapper接口，多个通用Mapper接口可以用逗号隔开 -->
 		<!-- 关于本插件，最重要的内容就是上面这个配置。下面要说的其他配置和普通的一致。 -->
 		<plugin type="tk.mybatis.mapper.generator.MapperPlugin">
-			<property name="mappers" value="com.lw.bootdemo.common.WriteMapper"/>
+			<property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
 			<property name="lombok" value="Getter,Setter,ToString"/>
 			<property name="forceAnnotation" value="true"/>
 			<property name="useMapperCommentGenerator" value="false"/>
+
 		</plugin>
 
 
@@ -40,23 +41,19 @@
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 		<!-- 生成映射文件的包名和位置 -->
-		<sqlMapGenerator targetPackage="config/sql-mapper/write"
+		<sqlMapGenerator targetPackage="config/sql-mapper"
 			targetProject="src/main/resources/">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 		<!-- 生成DAO的包名和位置 ANNOTATEDMAPPER/XMLMAPPER -->
 		<javaClientGenerator type="XMLMAPPER"
-			targetPackage="com.lw.bootdemo.mapper.write" targetProject="src/main/java/">
+			targetPackage="com.lw.bootdemo.mapper" targetProject="src/main/java/" >
 			<property name="enableSubPackages" value="true" />
+			<property name="" value="" />
 		</javaClientGenerator>
- 		<table tableName="t1" domainObjectName="T1" mapperName="T1WriteDao">
-			<!-- 和数据库字段保持一致 ,false使用驼峰命名-->
-			<property name="useActualColumnNames" value="false"/>
- 			<generatedKey column="id" sqlStatement="mysql" type="post"
- 				identity="true" />
- 		</table>
-		<table tableName="t2" domainObjectName="T2" mapperName="T2WriteDao">
-			<!-- 和数据库字段保持一致 ,false使用驼峰命名-->
+
+		<table tableName="t2" domainObjectName="T2" mapperName="T2Dao">
+			<!--和数据库字段保持一致 ,false使用驼峰命名-->
 			<property name="useActualColumnNames" value="true"/>
 			<generatedKey column="id" sqlStatement="mysql" type="post"
 						  identity="true" />
