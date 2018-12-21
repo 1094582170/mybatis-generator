@@ -16,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -70,6 +71,8 @@ public class ApplicationTests {
 		Example.Criteria criteria=example.and();
 		criteria.andCondition("user_name = ","lw");
 		criteria.andCondition("user_id = ","56546");
+		criteria.andEqualTo("user_name","lww");
+		criteria.andIn("id", Arrays.asList(1,2,3,4));
 		Example.Criteria criteria2=example.or();
 		criteria2.andCondition("id = ",1);
 		log.info("selectByExample:{}",t1ReadDao.selectByExample(example));

@@ -11,23 +11,14 @@ import lombok.ToString;
 @ToString
 @Table(name = "t2")
 public class T2 {
-    /**
-     * 编号
-     */
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    /**
-     * 用户编号
-     */
     @Column(name = "userId")
     private Integer userId;
 
-    /**
-     * 用户名称
-     */
     @Column(name = "userName")
     private String userName;
 
