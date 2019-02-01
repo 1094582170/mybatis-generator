@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lw.bootdemo.mapper.AnswerMapper">
+
+	<resultMap id="BaseResultMap" type="com.lw.bootdemo.pojo.db.Answer">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+		<result column="id" jdbcType="INTEGER" property="id"/>
+		<result column="account" jdbcType="VARCHAR" property="account"/>
+		<result column="password" jdbcType="VARCHAR" property="password"/>
+		<result column="name" jdbcType="VARCHAR" property="name"/>
+		<result column="phoneNumber" jdbcType="VARCHAR" property="phoneNumber"/>
+		<result column="status" jdbcType="VARCHAR" property="status"/>
+		<result column="ownerType" jdbcType="VARCHAR" property="ownerType"/>
+		<result column="ownerDepID" jdbcType="INTEGER" property="ownerDepId"/>
+		<result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+		<result column="lastUpdate" jdbcType="TIMESTAMP" property="lastUpdate"/>
+		<result column="answerType" jdbcType="VARCHAR" property="answerType"/>
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,
+		account,
+		password,
+		name,
+		phoneNumber,
+		status,
+		ownerType,
+		ownerDepID,
+		createTime,
+		lastUpdate,
+		answerType
+    </sql> 
+
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from answer
+        where id = #{id}
+    </select>
+
+    <select id="select" parameterType="com.lw.bootdemo.pojo.db.Answer" resultMap="BaseResultMap">
+        select a.id, a.account, a.password, a.name, a.phoneNumber, a.status, a.ownerType, a.ownerDepID, a.createTime, a.lastUpdate, a.answerType
+        <include refid="Base_Column_List"/>
+        from answer
+        <where> 
+            <if test = "id != null" >
+                and id = #{id}
+            </if>
+            <if test = "account != null" >
+                and account = #{account}
+            </if>
+            <if test = "password != null" >
+                and password = #{password}
+            </if>
+            <if test = "name != null" >
+                and name = #{name}
+            </if>
+            <if test = "phoneNumber != null" >
+                and phoneNumber = #{phoneNumber}
+            </if>
+            <if test = "status != null" >
+                and status = #{status}
+            </if>
+            <if test = "ownerType != null" >
+                and ownerType = #{ownerType}
+            </if>
+            <if test = "ownerDepId != null" >
+                and ownerDepID = #{ownerDepId}
+            </if>
+            <if test = "createTime != null" >
+                and createTime = #{createTime}
+            </if>
+            <if test = "lastUpdate != null" >
+                and lastUpdate = #{lastUpdate}
+            </if>
+            <if test = "answerType != null" >
+                and answerType = #{answerType}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete
+        from answer
+        where id = #{id}
+    </delete>
+
+    <delete id="delete" parameterType="com.lw.bootdemo.pojo.db.Answer">
+        delete from answer
+        <where> 
+            <if test = "id != null" >
+                and id = #{id}
+            </if>
+            <if test = "account != null" >
+                and account = #{account}
+            </if>
+            <if test = "password != null" >
+                and password = #{password}
+            </if>
+            <if test = "name != null" >
+                and name = #{name}
+            </if>
+            <if test = "phoneNumber != null" >
+                and phoneNumber = #{phoneNumber}
+            </if>
+            <if test = "status != null" >
+                and status = #{status}
+            </if>
+            <if test = "ownerType != null" >
+                and ownerType = #{ownerType}
+            </if>
+            <if test = "ownerDepId != null" >
+                and ownerDepID = #{ownerDepId}
+            </if>
+            <if test = "createTime != null" >
+                and createTime = #{createTime}
+            </if>
+            <if test = "lastUpdate != null" >
+                and lastUpdate = #{lastUpdate}
+            </if>
+            <if test = "answerType != null" >
+                and answerType = #{answerType}
+            </if>
+        </where>
+    </delete>
+
+    <insert id="insert" parameterType="com.lw.bootdemo.pojo.db.Answer">
+        insert into answer
+        (id,account,password,name,phoneNumber,status,ownerType,ownerDepID,createTime,lastUpdate,answerType)
+        values ( #{id},#{account},#{password},#{name},#{phoneNumber},#{status},#{ownerType},#{ownerDepId},#{createTime},#{lastUpdate},#{answerType})
+    </insert>
+
+
+    <insert id="insertSelective" parameterType="com.lw.bootdemo.pojo.db.Answer">
+        insert into answer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test = "id != null" >
+            	id,
+            </if>
+            <if test = "account != null" >
+            	account,
+            </if>
+            <if test = "password != null" >
+            	password,
+            </if>
+            <if test = "name != null" >
+            	name,
+            </if>
+            <if test = "phoneNumber != null" >
+            	phoneNumber,
+            </if>
+            <if test = "status != null" >
+            	status,
+            </if>
+            <if test = "ownerType != null" >
+            	ownerType,
+            </if>
+            <if test = "ownerDepId != null" >
+            	ownerDepID,
+            </if>
+            <if test = "createTime != null" >
+            	createTime,
+            </if>
+            <if test = "lastUpdate != null" >
+            	lastUpdate,
+            </if>
+            <if test = "answerType != null" >
+            	answerType,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=","> 
+            <if test = "id != null" >
+               #{id},
+            </if>
+            <if test = "account != null" >
+               #{account},
+            </if>
+            <if test = "password != null" >
+               #{password},
+            </if>
+            <if test = "name != null" >
+               #{name},
+            </if>
+            <if test = "phoneNumber != null" >
+               #{phoneNumber},
+            </if>
+            <if test = "status != null" >
+               #{status},
+            </if>
+            <if test = "ownerType != null" >
+               #{ownerType},
+            </if>
+            <if test = "ownerDepId != null" >
+               #{ownerDepId},
+            </if>
+            <if test = "createTime != null" >
+               #{createTime},
+            </if>
+            <if test = "lastUpdate != null" >
+               #{lastUpdate},
+            </if>
+            <if test = "answerType != null" >
+               #{answerType},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="update" parameterType="com.lw.bootdemo.pojo.db.Answer">
+        update answer
+        <set>
+			id = #{id},
+			account = #{account},
+			password = #{password},
+			name = #{name},
+			phoneNumber = #{phoneNumber},
+			status = #{status},
+			ownerType = #{ownerType},
+			ownerDepID = #{ownerDepId},
+			createTime = #{createTime},
+			lastUpdate = #{lastUpdate},
+			answerType = #{answerType}
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="updateSelective" parameterType="com.lw.bootdemo.pojo.db.Answer">
+        update answer
+        <set>
+            <if test = "id != null" >
+               id= #{id},
+            </if>
+            <if test = "account != null" >
+               account= #{account},
+            </if>
+            <if test = "password != null" >
+               password= #{password},
+            </if>
+            <if test = "name != null" >
+               name= #{name},
+            </if>
+            <if test = "phoneNumber != null" >
+               phoneNumber= #{phoneNumber},
+            </if>
+            <if test = "status != null" >
+               status= #{status},
+            </if>
+            <if test = "ownerType != null" >
+               ownerType= #{ownerType},
+            </if>
+            <if test = "ownerDepId != null" >
+               ownerDepID= #{ownerDepId},
+            </if>
+            <if test = "createTime != null" >
+               createTime= #{createTime},
+            </if>
+            <if test = "lastUpdate != null" >
+               lastUpdate= #{lastUpdate},
+            </if>
+            <if test = "answerType != null" >
+               answerType= #{answerType},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

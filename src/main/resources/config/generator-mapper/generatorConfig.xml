@@ -11,7 +11,7 @@
 		<!-- 关于本插件，最重要的内容就是上面这个配置。下面要说的其他配置和普通的一致。 -->
 		<plugin type="tk.mybatis.mapper.generator.MapperPlugin">
 			<property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
-			<property name="lombok" value="Getter,Setter,ToString"/>
+			<property name="lombok" value="Getter,Setter"/>
 			<property name="forceAnnotation" value="true"/>
 			<property name="useMapperCommentGenerator" value="false"/>
 
@@ -27,8 +27,8 @@
 
 		<!--数据库链接URL，用户名、密码 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://193.112.74.177:3306/study" userId="root"
-			password="123456">
+			connectionURL="jdbc:mysql://192.168.1.31:3306/v2_pagoda_overall" userId="ymt"
+			password="yimiaotong2015">
 		</jdbcConnection>
 		<!-- 强迫使用decimals -->
 		<javaTypeResolver>
@@ -52,7 +52,7 @@
 			<property name="" value="" />
 		</javaClientGenerator>
 
-		<table tableName="t2" domainObjectName="T2" mapperName="T2Dao">
+		<table tableName="answer" domainObjectName="Answer" mapperName="AnswerDao2">
 			<!--和数据库字段保持一致 ,false使用驼峰命名-->
 			<property name="useActualColumnNames" value="true"/>
 			<generatedKey column="id" sqlStatement="mysql" type="post"

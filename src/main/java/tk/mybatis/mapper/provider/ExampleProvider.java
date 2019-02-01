@@ -37,7 +37,6 @@ import tk.mybatis.mapper.util.MetaObjectUtil;
  *
  * @author liuzh
  */
-@Slf4j
 public class ExampleProvider extends MapperTemplate {
 
     public ExampleProvider(Class<?> mapperClass, MapperHelper mapperHelper) {
@@ -60,7 +59,6 @@ public class ExampleProvider extends MapperTemplate {
         sql.append(SqlHelper.fromTable(entityClass, tableName(entityClass)));
         sql.append(SqlHelper.exampleWhereClause());
         sql.append(SqlHelper.exampleForUpdate());
-        log.info(sql.toString());
         return sql.toString();
     }
 
@@ -90,7 +88,6 @@ public class ExampleProvider extends MapperTemplate {
             sql.append(SqlHelper.deleteFromTable(entityClass, tableName(entityClass)));
         }
         sql.append(SqlHelper.exampleWhereClause());
-        log.info(sql.toString());
         return sql.toString();
     }
 
@@ -116,7 +113,6 @@ public class ExampleProvider extends MapperTemplate {
         sql.append(SqlHelper.exampleWhereClause());
         sql.append(SqlHelper.exampleOrderBy(entityClass));
         sql.append(SqlHelper.exampleForUpdate());
-        log.info(sql.toString());
         return sql.toString();
     }
 
@@ -149,7 +145,6 @@ public class ExampleProvider extends MapperTemplate {
         sql.append(SqlHelper.updateTable(entityClass, tableName(entityClass), "example"));
         sql.append(SqlHelper.updateSetColumns(entityClass, "record", true, isNotEmpty()));
         sql.append(SqlHelper.updateByExampleWhereClause());
-        log.info(sql.toString());
         return sql.toString();
     }
 
@@ -172,7 +167,6 @@ public class ExampleProvider extends MapperTemplate {
         sql.append(SqlHelper.updateTable(entityClass, tableName(entityClass), "example"));
         sql.append(SqlHelper.updateSetColumns(entityClass, "record", false, false));
         sql.append(SqlHelper.updateByExampleWhereClause());
-        log.info(sql.toString());
         return sql.toString();
     }
 

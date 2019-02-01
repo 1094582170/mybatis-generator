@@ -15,8 +15,8 @@
 
 		<!--数据库链接URL，用户名、密码 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://193.112.74.177:3306/study" userId="root"
-			password="123456">
+						connectionURL="jdbc:mysql://192.168.1.31:3306/v2_pagoda_overall" userId="ymt"
+						password="yimiaotong2015">
 		</jdbcConnection>
 		<!-- 强迫使用decimals -->
 		<javaTypeResolver>
@@ -40,7 +40,7 @@
 			<property name="" value="" />
 		</javaClientGenerator>
 
-		<table tableName="t2" domainObjectName="T2" mapperName="T2Dao">
+		<table tableName="goods_goods_rel" domainObjectName="GoodsGoodsRel" mapperName="GoodsGoodsRelDao">
 			<!--和数据库字段保持一致 ,false使用驼峰命名-->
 			<property name="useActualColumnNames" value="true"/>
 			<generatedKey column="id" sqlStatement="mysql" type="post"
