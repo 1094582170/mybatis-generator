@@ -150,6 +150,23 @@
                 </dependencies>
             </plugin>
 
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>repackage</id>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <mainClass>com.lw.bootdemo.Application</mainClass>
+                        <executable>true</executable>
+                    </configuration>
+
+                </plugin>
         </plugins>
     </build>
 
