@@ -11,6 +11,8 @@
     <url>http://maven.apache.org</url>
 
 
+
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -58,6 +60,7 @@
         </dependency>
 
 
+
         <!-- 添加MySQL数据库驱动依赖包. -->
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
@@ -101,47 +104,9 @@
             <version>1.18.4</version>
             <scope>provided</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.8.1</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
-        <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-            <version>2.3.28</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.54</version>
-        </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
-            <version>2.1.3.RELEASE</version>
-        </dependency>
 
     </dependencies>
-    <profiles>
-        <profile>
-            <id>tkMybatis</id>
-            <properties>
-                <generator.file>src/main/resources/config/generator-mapper/generatorConfig.xml</generator.file>
-            </properties>
-        </profile>
-        <profile>
-            <id>mybatis</id>
-            <properties>
-                <generator.file>src/main/resources/config/generator-mapper/generatorConfigMybatis.xml</generator.file>
-            </properties>
-        </profile>
-    </profiles>
 
     <!-- 构建节点. -->
     <build>
@@ -149,12 +114,16 @@
         <plugins>
 
 
+
+
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
                 <version>1.3.5</version>
                 <configuration>
-                    <configurationFile>${generator.file}</configurationFile>
+                    <!--generator配置文件所在位置,最后一个才生效-->
+                    <configurationFile>src/main/resources/config/generator-mapper/generatorConfigRead.xml</configurationFile>
+                    <configurationFile>src/main/resources/config/generator-mapper/generatorConfigWrite.xml</configurationFile>
                     <overwrite>true</overwrite>
                     <verbose>true</verbose>
                 </configuration>
